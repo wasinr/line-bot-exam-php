@@ -11,13 +11,31 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 // Validate parsed JSON data
 if (!is_null($events['events'])) {
+
+
 	// Loop through each event
 	foreach ($events['events'] as $event) {
+
+
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+
+
+
+		    if($event['message']['text']=='เวลาละหมาด'){
+                $text = 'เวลาละหมาดของวันที่ 14 กรกฎาคม 2561 คือ...';
+            }
+            if($event['message']['text']=='ร้านอาหารฮาลาล'){
+                $text = 'ร้านอาหารฮาลาลใกล้เคียงคือ';
+            }
+            if($event['message']['text']=='ช้อปปิ้ง'){
+                $text = 'ต้องการช้อปปิ้งอะไรดีครับ';
+            }
+
 			// Get text sent
-			$text = $event['source']['userId'];
-			// Get replyToken
+			//$text = $event['source']['userId'];
+
+            // Get replyToken
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
